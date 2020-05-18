@@ -1,13 +1,10 @@
-FROM golang:1.13-alpine
+FROM alpine
 MAINTAINER Zixuan Zhang
 
-ENV SOURCES /go/src/github.com/Zixuan-Zhang98/simple-go-microservices/
-
-COPY . ${SOURCES}
-
-RUN cd ${SOURCES} && CGO_ENABLED=0 go install
+COPY ./simple-go-microservices /app/simple-go-microservices
+RUN chmod +x /app/simple-go-microservices
 
 ENV PORT 8080
 EXPOSE 8080
 
-ENTRYPOINT simple-go-microservices
+ENTRYPOINT /app/simple-go-microservices
